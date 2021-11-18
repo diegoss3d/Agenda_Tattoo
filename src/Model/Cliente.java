@@ -20,7 +20,11 @@ public class Cliente extends Pessoa{
         super(id, nome);
         this.endereco = endereco;
         this.cep = cep;
-    }   
+    }
+    
+    public Cliente(int id) {
+    	this.id = id;
+    }
     
     
     

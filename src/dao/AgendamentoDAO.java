@@ -109,15 +109,32 @@ public class AgendamentoDAO {
         
         while(resultSet.next()){
             int id = resultSet.getInt("id");
-            //String cliente = resultSet.getString("cliente");
-            String cliente = resultSet.getString("cliente");
+            int clienteId = resultSet.getInt("cliente");
             String servico = resultSet.getString("servico");
             float valor = resultSet.getFloat("valor");
             String data = resultSet.getString("data");
             String observacao = resultSet.getString("observacao");
             
-            Agendamento agendamentoComDadosDoBanco = new Agendamento(id, cliente, servico, valor, data, observacao);
+            Agendamento agendamentoComDadosDoBanco = new Agendamento(id, new Cliente(clienteId), servico, valor, data, observacao);
             agendamentos.add(agendamentoComDadosDoBanco);
+        }
+        
+        for(Agendamento a : agendamentos) {
+        	String sql = "select * from cliente where id = ?;";
+    		PreparedStatement pesquisaCliente = connection.prepareStatement(sql);
+    		pesquisaCliente.setInt(1, a.getCliente().getId());
+    		ResultSet cliente = pesquisaCliente.executeQuery();
+    		cliente.next();
+    		a.getCliente().setNome(resultSet.getString("nome"));
+    		a.getCliente().setSexo(resultSet.getString("sexo").charAt(0));
+    		a.getCliente().setDataNascimento(resultSet.getDate("dataNascimento"));
+    		a.getCliente().setTelefone(resultSet.getString("telefone"));
+    		a.getCliente().setEmail(resultSet.getString("email"));
+    		a.getCliente().setRg(resultSet.getString("rg"));
+    		a.getCliente().setEndereco(resultSet.getString("endereco"));
+    		a.getCliente().setCep(resultSet.getString("cep"));
+    		
+    		
         }
         return agendamentos;
     }        
