@@ -63,6 +63,23 @@ public class AgendaController {
         helper.preencherServicos(servicos);
         
     }
+    
+    public void atualizaValor(){
+        Servico servico = helper.obterServico();
+        helper.setarValor(servico.getValor());
+    }
+    
+    public void agendar() throws SQLException, ParseException{
+        //Buscar objeto agendamento da tela
+        Agendamento agendamento = helper.obterModelo();
+        
+        //Salvar objeto no banco de dados
+        new AgendamentoDAO().insert(agendamento);
+        
+        //Inserir elemento na tabela
+        atualizaTabela();
+        helper.limparTela();
+    }
 
     
 }

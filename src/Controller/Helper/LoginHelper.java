@@ -4,7 +4,7 @@ import Model.Usuario;
 import View.Login;
 
 
-public class LoginHelper {
+public class LoginHelper  implements IHelper{
     
     private final Login view;
 

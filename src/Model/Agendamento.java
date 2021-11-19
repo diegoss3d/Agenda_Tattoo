@@ -39,6 +39,14 @@ public class Agendamento {
         
     }
 
+    public Agendamento(int id, Cliente cliente, Servico servico, float valor, String data, String observacao) {
+        this.id = id;
+        this.cliente = cliente;
+        this.valor = valor;
+        this.data = data;
+        this.observacao = observacao;
+    }
+
     public Agendamento(int id, String cliente, String servico, float valor, String data, String observacao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

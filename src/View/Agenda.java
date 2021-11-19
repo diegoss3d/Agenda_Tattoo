@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -132,6 +133,11 @@ public class Agenda extends javax.swing.JFrame {
         jComboBox_Servico.setBorder(null);
         jComboBox_Servico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jComboBox_Servico.setOpaque(false);
+        jComboBox_Servico.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_ServicoItemStateChanged(evt);
+            }
+        });
         getContentPane().add(jComboBox_Servico, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 35));
 
         txtObservacao.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,6 +155,11 @@ public class Agenda extends javax.swing.JFrame {
         btAgendar.setForeground(new java.awt.Color(255, 255, 255));
         btAgendar.setText("Agendar");
         btAgendar.setBorder(null);
+        btAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgendarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 610, 520, 35));
 
         TableAgendamentos.setBackground(new java.awt.Color(255, 255, 255));
@@ -177,6 +188,20 @@ public class Agenda extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox_ServicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_ServicoItemStateChanged
+        this.controller.atualizaValor();
+    }//GEN-LAST:event_jComboBox_ServicoItemStateChanged
+
+    private void btAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgendarActionPerformed
+        try {
+            this.controller.agendar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btAgendarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +270,7 @@ public class Agenda extends javax.swing.JFrame {
         this.controller.atualizaTabela();
         this.controller.atualizaCliente();
         this.controller.atualizaServico();
+        this.controller.atualizaValor();
     }
 
     public JTable getTableAgendamentos() {
@@ -271,9 +297,48 @@ public class Agenda extends javax.swing.JFrame {
         this.jComboBox_Servico = jComboBox_Servico;
     }
 
+    public JTextField getTxtValor() {
+        return txtValor;
+    }
+
+    public void setTxtValor(JTextField txtValor) {
+        this.txtValor = txtValor;
+    }
+
+    public JTextField getTxtData() {
+        return txtData;
+    }
+
+    public void setTxtData(JTextField txtData) {
+        this.txtData = txtData;
+    }
+
+    public JTextField getTxtHora() {
+        return txtHora;
+    }
+
+    public void setTxtHora(JTextField txtHora) {
+        this.txtHora = txtHora;
+    }
+
+    public JTextField getTxtID() {
+        return txtID;
+    }
+
+    public void setTxtID(JTextField txtID) {
+        this.txtID = txtID;
+    }
+
+    public JTextField getTxtObservacao() {
+        return txtObservacao;
+    }
+
+    public void setTxtObservacao(JTextField txtObservacao) {
+        this.txtObservacao = txtObservacao;
+    }
     
     
-    
+       
     
     
     
